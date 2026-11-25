@@ -1,6 +1,13 @@
-# Glass Root Property Studio v0.0.3.2
+# Glass Root Property Studio v0.0.4
 
 Independent free 3D property reconstruction and modeling workspace. [Open the website](https://crking92.github.io/Glass-Root-Property-Studio/).
+
+## Real terrain reconstruction (v0.0.4)
+- User confirmed manual building tracing works and explicitly deferred detailed architecture; next focus is real-world reconstruction, not roof/material modeling.
+- Geographic sites 10–2,000 ft: Terrain & elevation → 5×5 (25 samples) or 9×9 (81 samples) → Retrieve USGS elevation. [USGS 3DEP bare-earth dynamic DEM](https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer), [ArcGIS getSamples documentation](https://developers.arcgis.com/rest/services-reference/enterprise/get-samples/). Uses bounded multipoint GET requests (25 points per batch), EPSG:3857, bilinear sampling, meter-to-foot conversion; requires complete valid coordinate-matched single-band responses. Source grid resolution and acquisition dates vary and are not inferred from requested spacing; raster IDs and returned resolution recorded where available, vertical datum and vintage not asserted.
+- Confirmation before applying; triangulated terrain, draped aerial texture, parcel/site boundaries following relief, structures and other objects anchored at center elevation; no grading foundations or terrain-conforming hardscape yet. Plan coordinates remain unchanged. True-scale 1× default, optional labeled 2×/3× exaggeration and flat display toggle. Source min/max, relief and grid spacing displayed. Saved JSON and undo/redo preserve samples. Removing terrain leaves objects; resize or manual reference replacement clears the invalidated grid. Failed requests preserve prior data; no fabricated missing values.
+- Synthetic tests passed (15): grid count, coordinate-based shuffled sample matching and unit conversion, schema, center datum, corners, triangle interpolation, exaggeration, flat mode, relief, rejection of missing, nonnumeric, duplicate and sentinel values, stale extent and valid zero. Editor/module syntax and literal editor ID references passed. Source is a bare-earth DEM that may include LiDAR-derived data; not raw LiDAR point-cloud reconstruction, canopy heights, drainage analysis or a survey. 9×9 spacing is intentionally coarse. Service metadata reviewed; direct public test request inaccessible from development web tool, so live endpoint/browser response, CORS and 3D visual QA remain pending.
+- Source coordinates sent to USGS only on explicit request. No private imagery or scans uploaded. No other Glass Root repositories modified.
 
 ## Manual missing-building tracing (v0.0.3.2)
 - User screenshot confirmed Microsoft retrieval and aerial alignment for three neighboring buildings, but the building within the selected parcel was not detected. This is not evidence of its absence.
@@ -57,4 +64,4 @@ Read-only review of [Landscape Studio](https://github.com/Crking92/Glass-Root-La
 - Project file schema version 1 is independent of Landscape Studio. Source code MIT; third-party and user images have their own rights.
 
 ## Next milestone
-Verify parcel and building retrieval and saved-project behavior in browser, then improve building vertex editing, roofs and architectural elements and more detailed structure geometry, real terrain, image-assisted tracing, local photographs and video reconstruction.
+Verify live terrain retrieval, alignment and save/open; then investigate aerial feature detection and ground-photo/video reconstruction. Detailed architecture deferred by user. and more detailed structure geometry, real terrain, image-assisted tracing, local photographs and video reconstruction.

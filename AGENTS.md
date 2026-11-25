@@ -12,7 +12,7 @@
 ## Development order
 1. Local 3D workspace, scale calibration, image alignment, editable basic objects, save/open.
 2. Address, aerial and parcel data; building footprints, georeferencing.
-3. Advanced building roofs, doors, windows, fences, hardscape, canopy and terrain.
-4. Elevation grids/LiDAR, image-assisted feature tracing and ground photo alignment.
-5. Scan import, optional local photogrammetry from images/videos, semantic refinement and export.
-6. Future interoperability; defer ecological analysis and native planting design.
+3. Elevation grids and LiDAR-derived terrain; image-assisted feature tracing and ground photo alignment.
+4. Scan import, optional local photogrammetry from images/videos, semantic refinement and export.
+5. Future interoperability; defer ecological analysis and native planting design.
+- User explicitly deferred detailed architectural modeling (roof styles, materials, doors/windows) on 2026-11-25. Retain editable basic geometry; revisit Landscape Studio's architectural work later without duplicating effort.
