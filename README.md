@@ -1,8 +1,17 @@
-# Glass Root Property Studio v0.0.1
+# Glass Root Property Studio v0.0.2
 
 Independent free 3D property reconstruction and modeling workspace. [Open the website](https://crking92.github.io/Glass-Root-Property-Studio/).
 
-## First release
+## Geographic starter (v0.0.2)
+- Click Find property by address / coordinates in Aerial reference. Enter a complete US address (Census lookup using the sandboxed JSONP method adapted from Landscape Studio) or coordinates. Select a match and verify its location visually; geocoding may be interpolated.
+- Choose 600-ft overview or 250-ft lot, or enter a custom rectangular extent (10–2,000 ft). Four aerial providers: CAPCOG regional 2020, Texas NAIP 2022, USGS NAIP, USGS NAIP Plus. Unknown imagery vintage remains unknown. Select another source if a request fails.
+- Load preview, click to recenter and reload, then import as a new site. Approximate local Web Mercator ground scale is corrected at center latitude; the aerial is embedded in the project and displayed in plan/3D. Alternatively create a scaled geographic site without imagery. Save/open retains geographic center, extent, projection, reference provider, request URL, vintage and retrieval time. Manual replacement clears geographic reference. Source metadata is displayed; no survey accuracy implied.
+- Explicit requests send addresses to Census and geographic extents to imagery providers. No automatic upload of images or projects. No private address tested.
+- Separate geo-math.js, geo-address.js, geo-imagery.js and gis.js modules. No runtime dependency on or writes to other Glass Root projects. Original manual modeling remains available if GIS module import fails.
+- Tests: all four modules and editor async body compile; synthetic 600 x 250 ft extent at latitude 30 degrees returns correct ground scale, center roundtrip and 1024 x 427 raster request for each provider; invalid latitude rejected. URL query encoding simulated. Live provider availability, CORS, preview and save/reopen require browser QA. User reported v0.0.1 worked; v0.0.2 not live verified.
+- No parcel or footprint retrieval, real terrain, automatic detection, or photo/video reconstruction yet.
+
+## First release (v0.0.1)
 - Three.js r180 (MIT) and OrbitControls from pinned jsDelivr imports; requires internet on initial load and WebGL 2. Local project assets do not upload to a server.
 - Blank site and fictional residential example; local X/right, Z/down, Y/up coordinates in feet. No true north, geographic origin or CRS until GIS is added.
 - Import a JPEG/PNG/WebP image, downsample to at most 2048 pixels on the long side, center it in the site and show it in plan or 3D. Initial dimensions are explicitly assumed. Click two image points and provide a known distance in feet to uniformly scale image and site. Calibrate before drawing; calibration is disabled once objects exist. New drawing is blocked while an uncalibrated image is present. Aerial opacity and visibility controls.
@@ -27,4 +36,4 @@ Read-only review of [Landscape Studio](https://github.com/Crking92/Glass-Root-La
 - Project file schema version 1 is independent of Landscape Studio. Source code MIT; third-party and user images have their own rights.
 
 ## Next milestone
-Verify the live prototype, fix interaction issues, then build address/coordinate lookup and scaled aerial/parcel import based on existing GIS work. Follow with editable polygon building footprints and more detailed structure geometry, real terrain, image-assisted tracing, local photographs and video reconstruction.
+Verify geographic starter in browser, then add parcel retrieval and automatic building footprint import based on existing GIS work. Follow with editable polygon building footprints and more detailed structure geometry, real terrain, image-assisted tracing, local photographs and video reconstruction.
