@@ -1,6 +1,12 @@
-# Glass Root Property Studio v0.0.3
+# Glass Root Property Studio v0.0.3.1
 
 Independent free 3D property reconstruction and modeling workspace. [Open the website](https://crking92.github.io/Glass-Root-Property-Studio/).
+
+## Building source reliability (v0.0.3.1)
+- User screenshot confirmed TxGIO parcel retrieval (44,524 sq ft displayed) and Overpass request timeout, not a confirmed absence of buildings.
+- Automatic building lookup now tries the Microsoft US Building Footprints service hosted by Esri, then OSM Overpass and Private.coffee sequentially if the preceding source fails or returns no usable polygons. Explicit single-provider options available. Each provider has a 25-second client timeout; automatic requests may take up to 75 seconds. No repeat requests after a usable response. No cross-source merging; avoid importing overlapping copies from separate runs.
+- Microsoft layer metadata verified: [MSBFP2/0](https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/MSBFP2/FeatureServer/0), OBJECTID, polygon geometry, EPSG:3857, ODbL [source metadata](https://www.arcgis.com/sharing/rest/content/items/036cf113321e4f60b994aabe7c8af13b/info/metadata/metadata.xml?format=default&output=html). Request geometry and ID only; discard unsupported rings and partial shapes. No height field; height remains explicitly unknown with 10 ft editable proxy. Source imagery vintage unknown. User must visually verify.
+- Synthetic Microsoft polygon conversion, unknown height, multi-ring rejection and editor/module syntax passed. Successful parcel results remain separate from building errors. Browser requests and coverage still require testing; no private property query was made by development tools.
 
 ## GIS feature reconstruction (v0.0.3)
 - Start with a geographic property, then click Reconstruct existing property (GIS). Query a single parcel at the site's center from Texas StratMap identify or the Hays CAD / Dripping Springs GIS layer (selected explicitly). Single-ring only, entirely within site; expand/recenter and retry if needed. No owner attributes stored. Parcel overlay is approximate appraisal GIS, not a survey. No dataset vintage asserted.
