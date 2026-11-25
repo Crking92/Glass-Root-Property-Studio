@@ -1,6 +1,14 @@
-# Glass Root Property Studio v0.0.2
+# Glass Root Property Studio v0.0.3
 
 Independent free 3D property reconstruction and modeling workspace. [Open the website](https://crking92.github.io/Glass-Root-Property-Studio/).
+
+## GIS feature reconstruction (v0.0.3)
+- Start with a geographic property, then click Reconstruct existing property (GIS). Query a single parcel at the site's center from Texas StratMap identify or the Hays CAD / Dripping Springs GIS layer (selected explicitly). Single-ring only, entirely within site; expand/recenter and retry if needed. No owner attributes stored. Parcel overlay is approximate appraisal GIS, not a survey. No dataset vintage asserted.
+- Find mapped buildings queries OpenStreetMap through Overpass, bounded by the current geographic extent (10–2,000 ft). Only closed simple building ways wholly within the extent are imported; complex relations, holes, partial features and unsupported geometries are not reconstructed. Maximum response 300 ways. Coverage unknown. OSM attribution/ODbL shown and retained in objects; source way links, retrieval time and height evidence saved. No claim of automatic image recognition.
+- Review candidate footprints on an aerial/blank preview, deselect unwanted buildings or parcel, then import. Buildings are real polygon extrusions with flat roof proxies, not bounding-box approximations. A simple valid OSM height tag is used when available; otherwise 10 ft is an explicit editable placeholder, not an observed height. Width/depth scale polygon proportionally by axis, position/rotation and height editable; individual vertex editing not yet supported. Duplicates by source way ID are skipped. Remove parcel independently; undo/redo and JSON retain imported geometry. Manual image replacement clears geographic parcel reference.
+- Public service requests require explicit action. No private data uploaded; coordinates/extent sent to providers. External service availability, coverage, response schemas and CORS still require live testing. Parcel provider metadata and OSM query syntax reviewed; no live site requests performed by development environment. No automatic driveways, trees, roof reconstruction or terrain yet.
+- Source links: [TxGIO](https://geographic.texas.gov/stratmap/land-parcels), [Hays CAD GIS](https://services6.arcgis.com/XnTA1N5QxtOFa9o8/ArcGIS/rest/services/CODS_Public_Map/FeatureServer/6), [OpenStreetMap copyright](https://www.openstreetmap.org/copyright), [Overpass](https://dev.overpass-api.de/overpass-doc/en/full_data/bbox.html). Preserve data licensing separately from MIT code.
+- Editor and feature module syntax checked; eight synthetic checks passed: concave ring, self-crossing rejection, parcel area, geographic alignment, metric height conversion, unknown height status, outside-site rejection and open-ring rejection. Live browser QA pending. User confirmed v0.0.2 deployed.
 
 ## Geographic starter (v0.0.2)
 - Click Find property by address / coordinates in Aerial reference. Enter a complete US address (Census lookup using the sandboxed JSONP method adapted from Landscape Studio) or coordinates. Select a match and verify its location visually; geocoding may be interpolated.
@@ -36,4 +44,4 @@ Read-only review of [Landscape Studio](https://github.com/Crking92/Glass-Root-La
 - Project file schema version 1 is independent of Landscape Studio. Source code MIT; third-party and user images have their own rights.
 
 ## Next milestone
-Verify geographic starter in browser, then add parcel retrieval and automatic building footprint import based on existing GIS work. Follow with editable polygon building footprints and more detailed structure geometry, real terrain, image-assisted tracing, local photographs and video reconstruction.
+Verify parcel and building retrieval and saved-project behavior in browser, then improve building vertex editing, roofs and architectural elements and more detailed structure geometry, real terrain, image-assisted tracing, local photographs and video reconstruction.
