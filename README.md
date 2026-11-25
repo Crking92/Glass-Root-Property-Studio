@@ -1,6 +1,13 @@
-# Glass Root Property Studio v0.0.3.1
+# Glass Root Property Studio v0.0.3.2
 
 Independent free 3D property reconstruction and modeling workspace. [Open the website](https://crking92.github.io/Glass-Root-Property-Studio/).
+
+## Manual missing-building tracing (v0.0.3.2)
+- User screenshot confirmed Microsoft retrieval and aerial alignment for three neighboring buildings, but the building within the selected parcel was not detected. This is not evidence of its absence.
+- New Trace building outline tool in Model objects: click ordered corners in plan, undo a corner, finish with button or Enter, Escape cancels. Supports simple rotated and concave polygon shapes, 3–100 corners. Rejects crossings, duplicate vertices, and degenerate shapes. Existing two-corner rectangle tool remains. Use the aerial calibration workflow first if needed. Click Trace missing building manually in the GIS dialog to import the selected parcel only (if checked), discard unimported building candidates and enter trace mode with snapping disabled.
+- A draft outline and markers render above the reference. Finished geometry uses the existing polygon extrusion and inspector, editable position, width/depth, rotation, height, name, delete, undo/redo and saved JSON. Height defaults to an explicit 10 ft placeholder; roof remains flat. Individual vertex editing after completion is not yet implemented.
+- When a parcel is found, candidate buildings are preselected only if their bounding-box center lies within the parcel. Other candidates remain selectable. This is a convenience heuristic, not a legal containment test. Parcel retrieval after building lookup resets preselection accordingly.
+- Five synthetic polygon checks (rotated concave, coordinate reconstruction, self-crossing rejection, too few vertices, duplicate vertex rejection) and editor/module syntax passed. Live trace controls and rendering still require user testing. Manual outlines retain reference attribution and manual evidence, not GIS-detected or measured status. No additional external services or photo uploads. Existing GIS sources unchanged.
 
 ## Building source reliability (v0.0.3.1)
 - User screenshot confirmed TxGIO parcel retrieval (44,524 sq ft displayed) and Overpass request timeout, not a confirmed absence of buildings.
